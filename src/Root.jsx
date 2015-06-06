@@ -12,8 +12,7 @@ export default class Root extends Component {
   render() {
     console.info('[Root.jsx] ', dispatcher);
       return <Provider dispatcher={dispatcher}>
-        {() => <AppController />
-        }
+        {() => <AppController /> }
       </Provider>
   }
 
