@@ -7,6 +7,6 @@ function createStore(initialState, handlers) {
       state;
 }
 
-export default createStore(['empty'], {
+export default createStore([], {
   [LOAD_PACKAGES]: (state, action) => action.packages
 });

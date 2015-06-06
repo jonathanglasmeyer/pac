@@ -1,7 +1,12 @@
 import {LOAD_PACKAGES} from '../constants/ActionTypes';
+import _ from 'lodash';
 
 function getPackagesFromStdout(stdout) {
-  return stdout.split('\n').map(line => line.split(' ')[0]);
+  console.info('[PacActions.js] ', 'start');
+  return stdout.split('\n\n')
+    .map(packageLines => _.zipObject(packageLines.split('\n')
+        .map(line => line.split(/\s+\:\s+/))))
+
 }
 
 // http://nodejs.org/api.html#_child_processes
@@ -19,8 +24,13 @@ const exec = window.require('child-process-promise').exec;
 export function loadPackages() {
 
   return async (perform) => {
-    exec('pacman -Qen').then(result => {
+    // [Q]uery 
+    // [e]xplicitly installed 
+    // [m] : from aur
+    // [i] : info
+    exec('pacman -Qemi').then(result => {
       const packages = getPackagesFromStdout(result.stdout);
+      console.info('[PacActions.js] ', 'end');
       perform({type: LOAD_PACKAGES, packages});
     });
   };
