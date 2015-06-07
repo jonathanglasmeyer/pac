@@ -1,1 +1,1 @@
-export const LOAD_PACKAGES = 'LOAD_PACKAGES';
+export const SHOW_DIALOG = 'SHOW_DIALOG';

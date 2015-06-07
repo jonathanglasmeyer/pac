@@ -1,11 +1,5 @@
 import {LOAD_PACKAGES} from '../constants/ActionTypes.js';
-
-function createStore(initialState, handlers) {
-  return (state = initialState, action) =>
-    handlers[action.type] ?
-      handlers[action.type](state, action) :
-      state;
-}
+import {createStore} from 'utils/createStore.js';
 
 export default createStore([], {
   [LOAD_PACKAGES]: (state, action) => action.packages

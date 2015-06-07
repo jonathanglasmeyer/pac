@@ -1,9 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 
 const style = {
-  base: {
-
-  }
+  marginTop: 16,
+  borderTop: '1px solid rgba(0,0,0,0.08)',
 };
 
 @Radium.Enhancer
@@ -15,7 +14,7 @@ export default class List extends Component {
 
   render() {
 
-    return <ul>
+    return <ul style={[style]}>
       {this.props.children}
     </ul>;
   }

@@ -12,6 +12,10 @@ const style = {
 @Radium.Enhancer
 export default class LoadingPage extends ValidatedComponent {
 
+  static propTypes = {
+    text: PropTypes.string
+  }
+
   render() {
     console.info('[LoadingPage.jsx] ', 'load');
 

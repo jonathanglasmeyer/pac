@@ -1,12 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 import ValidatedComponent from 'utils/ValidatedComponent.jsx'
 
-import PackageListController from './controllers/PackageListController.jsx';
+// material ui
+import {AppBar, Dialog} from 'material-ui';
 
-import {RaisedButton} from 'material-ui';
 var mui = require('material-ui');
 var ThemeManager = new mui.Styles.ThemeManager();
 var Colors = mui.Styles.Colors;
+
+// own widgets
+import PackageListController from './controllers/PackageListController.jsx';
 
 export default class App extends ValidatedComponent {
 
@@ -20,12 +23,29 @@ export default class App extends ValidatedComponent {
 
   componentWillMount() {
     ThemeManager.setPalette({
-      primary1Color: Colors.indigo500,
+      primary1Color: Colors.blueGrey500,
       accent1Color: Colors.deepOrange500
     });
   }
 
   render() {
-    return <PackageListController />;
+    var standardActions = [
+      { text: 'Cancel' },
+      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
+    ];
+
+    return <div>
+      <AppBar title='Pac' style={{position: 'fixed', top: 0}} />
+
+      <main style={{background: '#ececec', paddingTop: 64}}>
+        <PackageListController />;
+      </main>
+
+    </div>
+  }
+
+  onMainClick() {
+    // this.refs.dialog.show();
+    console.info('[App.jsx] ', 'main click');
   }
 }

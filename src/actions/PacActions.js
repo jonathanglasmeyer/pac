@@ -28,7 +28,7 @@ export function loadPackages() {
     // [m] : from aur
     // [i] : info
     console.info('[PacActions.js] ', 'start');
-    exec('pacman -Qeni', {maxBuffer: 800*1024})
+    exec('pacman -Qemi', {maxBuffer: 800*1024})
       .then(result => {
         console.info('[PacActions.js] ', 'got them from stdout');
         const packages = getPackagesFromStdout(result.stdout);
