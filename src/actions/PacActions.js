@@ -27,11 +27,15 @@ export function loadPackages() {
     // [e]xplicitly installed 
     // [m] : from aur
     // [i] : info
-    exec('pacman -Qemi').then(result => {
-      const packages = getPackagesFromStdout(result.stdout);
-      console.info('[PacActions.js] ', 'end');
-      perform({type: LOAD_PACKAGES, packages});
-    });
+    console.info('[PacActions.js] ', 'start');
+    exec('pacman -Qeni', {maxBuffer: 800*1024})
+      .then(result => {
+        console.info('[PacActions.js] ', 'got them from stdout');
+        const packages = getPackagesFromStdout(result.stdout);
+        console.info('[PacActions.js] ', 'end parsing');
+        perform({type: LOAD_PACKAGES, packages});
+      })
+      .catch(err => console.info('[PacActions.js] ', err));
   };
 }
 

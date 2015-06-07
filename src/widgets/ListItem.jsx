@@ -11,12 +11,15 @@ const style = {
 export default class ListItem extends ValidatedComponent {
 
   static propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    onClick: PropTypes.func,
+    style: PropTypes.array
   }
 
   render() {
+    const {style: style_ = [], ...props} = this.props;
 
-    return <li style={[style.base]}>
+    return <li style={[style.base, ...style_]} {...props}>
       {this.props.children}
     </li>;
   }

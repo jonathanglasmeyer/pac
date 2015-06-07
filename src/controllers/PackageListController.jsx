@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import React, {Component, PropTypes} from 'react';
 import ValidatedComponent from 'utils/ValidatedComponent.jsx'
 
@@ -26,7 +28,18 @@ export default class PackageListController extends ValidatedComponent {
     const {packages, dispatcher} = this.props;
     const actions = bindActions(PacActions, dispatcher);
 
-    return <PackageList packages={packages} {...actions} />;
+    const format = 'ddd DD MMM YYYY hh:mm:ss Z'
+    const packagesWithDateSorted =
+      _.sortBy(packages, p => {
+         const date = moment(p['Install Date'], format);
+         p['Install Date'] = date;
+         return date.unix();
+      }).reverse();
+    // console.info('[PackageListController.jsx] ', packagesSorted);
+    // console.info('[PackageListController.jsx] ', moment(date, format).unix());
+
+
+    return <PackageList packages={packagesWithDateSorted} {...actions} />;
   }
 
 };
