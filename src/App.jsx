@@ -3,23 +3,29 @@ import ValidatedComponent from 'utils/ValidatedComponent.jsx'
 
 import PackageListController from './controllers/PackageListController.jsx';
 
+import {RaisedButton} from 'material-ui';
+var mui = require('material-ui');
+var ThemeManager = new mui.Styles.ThemeManager();
+var Colors = mui.Styles.Colors;
+
 export default class App extends ValidatedComponent {
 
-  static propTypes = {
+  static childContextTypes = {muiTheme: React.PropTypes.object}
 
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
   }
 
-  // componentDidMount() {
-  //   this.props.loadPackages();
-  // }
+  componentWillMount() {
+    ThemeManager.setPalette({
+      primary1Color: Colors.indigo500,
+      accent1Color: Colors.deepOrange500
+    });
+  }
 
   render() {
-    // const {packages, loadPackages, uninstall} = this.props;
     return <PackageListController />;
   }
-
-  // onPackageClick() {
-  //   this.props.uninstall('foo');
-  // }
-
 }

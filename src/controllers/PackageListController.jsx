@@ -35,9 +35,6 @@ export default class PackageListController extends ValidatedComponent {
          p['Install Date'] = date;
          return date.unix();
       }).reverse();
-    // console.info('[PackageListController.jsx] ', packagesSorted);
-    // console.info('[PackageListController.jsx] ', moment(date, format).unix());
-
 
     return <PackageList packages={packagesWithDateSorted} {...actions} />;
   }

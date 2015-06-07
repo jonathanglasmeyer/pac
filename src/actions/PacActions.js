@@ -23,8 +23,8 @@ const exec = window.require('child-process-promise').exec;
 
 export function loadPackages() {
   return perform => {
-    // [Q]uery 
-    // [e]xplicitly installed 
+    // [Q]uery
+    // [e]xplicitly installed
     // [m] : from aur
     // [i] : info
     console.info('[PacActions.js] ', 'start');
@@ -39,12 +39,12 @@ export function loadPackages() {
   };
 }
 
-export function uninstall(package_) {
+export function uninstall(pack) {
   return perform => {
-    exec('ls').then(({stdout}) => {
+    exec(`sudo pacman -Rns --noconfirm ${pack['Name']}`).then(({stdout}) => {
       console.info('[PacActions.js] ', stdout);
       perform(loadPackages());
-    });
+    }).catch((e) => console.info(e));
   };
 }
 

@@ -4,6 +4,7 @@ import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 // widgets
 import List from '../widgets/List.jsx';
 import PackageListItem from './PackageList/PackageListItem.jsx';
+import LoadingPage from './LoadingPage.jsx';
 
 
 export default class PackageList extends ValidatedComponent {
@@ -20,23 +21,18 @@ export default class PackageList extends ValidatedComponent {
   }
 
   render() {
-    const {packages} = this.props;
+    const {packages, uninstall} = this.props;
+    console.info('[PackageList.jsx packages] ', this.props);
 
-    return <List>
-      {packages.map(pack =>
-        <PackageListItem
-          pack={pack} />
-      )}
-    </List>;
-    // {packages.map(p => <li key={p['Name']} onClick={::this.onPackageClick}>
-    //   <span className='package-name'>
-    //     {p['Name']}
-    //   </span>
-    //   <span className='description'>
-    //     {p['Description']}
-    //   </span>
-    // </li>)}
-    // </ul>;
+    return packages.length > 0 ?
+      <List>
+        {packages.map((pack,i) =>
+          <PackageListItem
+            key={i}
+            {...{uninstall, pack}} />
+        )}
+      </List>
+    : <LoadingPage />;
   }
 
 };
