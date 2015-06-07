@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 const style = {
-  marginTop: 16,
+  // marginTop: 16,
   borderTop: '1px solid rgba(0,0,0,0.08)',
 };
 

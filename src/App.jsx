@@ -23,16 +23,12 @@ export default class App extends ValidatedComponent {
 
   componentWillMount() {
     ThemeManager.setPalette({
-      primary1Color: Colors.blueGrey500,
+      primary1Color: Colors.teal500,
       accent1Color: Colors.deepOrange500
     });
   }
 
   render() {
-    var standardActions = [
-      { text: 'Cancel' },
-      { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
-    ];
 
     return <div>
       <AppBar title='Pac' style={{position: 'fixed', top: 0}} />
