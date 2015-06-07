@@ -29,3 +29,5 @@ node_modules
 
 # App packaged
 release
+
+public/bundle.js
