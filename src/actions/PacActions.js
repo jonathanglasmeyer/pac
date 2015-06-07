@@ -22,8 +22,7 @@ const exec = window.require('child-process-promise').exec;
 
 
 export function loadPackages() {
-
-  return async (perform) => {
+  return perform => {
     // [Q]uery 
     // [e]xplicitly installed 
     // [m] : from aur
@@ -32,6 +31,15 @@ export function loadPackages() {
       const packages = getPackagesFromStdout(result.stdout);
       console.info('[PacActions.js] ', 'end');
       perform({type: LOAD_PACKAGES, packages});
+    });
+  };
+}
+
+export function uninstall(package_) {
+  return perform => {
+    exec('ls').then(({stdout}) => {
+      console.info('[PacActions.js] ', stdout);
+      perform(loadPackages());
     });
   };
 }

@@ -25,17 +25,3 @@ body {
   color: rgba(0,0,0,.87);
 }
 
-span.package-name {
-  display: inline-block;
-  padding-right: 10px;
-  /* min-width: 130px; */
-}
-
-span.description {
-  color: #666;
-  font-size: 80%;
-}
-
-li {
-  list-style-type: none;
-}

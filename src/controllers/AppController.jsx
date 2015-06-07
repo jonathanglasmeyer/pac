@@ -1,15 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import { connect, bindActions } from 'redux';
-import packages from '../stores/packages.js';
-import * as PacActions from '../actions/PacActions.js';
 
-import App from '../pages/App.jsx';
+import App from '../App.jsx';
 
-@connect(state => {
-  return {
-    packages: state.packages,
-  };
-})
 export default class AppController extends Component {
 
   render() {

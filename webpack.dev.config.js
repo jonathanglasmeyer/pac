@@ -8,7 +8,7 @@ module.exports = {
   },
   entry: {
     app: [
-      './src/client.jsx' // Your appʼs entry point
+      './src/entry.jsx' // Your appʼs entry point
     ]
   },
   output: {
@@ -26,5 +26,11 @@ module.exports = {
       {test: /\.(?:eot|ttf|woff2?)$/, loader: 'file-loader?name=[path][name]-[hash:6].[ext]&context=assets'}
     ]
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+        Radium: 'radium',
+        "_": 'lodash',
+    })
+  ],
   devtool: 'eval-source-map'
 };

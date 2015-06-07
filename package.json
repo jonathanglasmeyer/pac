@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
-    "start": "node hotReloadServer.js"
+    "start": "webpack --config ./webpack.dev.config.js -w"
   },
   "dependencies": {
     "babel": "5.4.7",
@@ -12,6 +12,7 @@
     "child-process-promise": "^1.1.0",
     "classnames": "2.1.2",
     "lodash": "^3.9.3",
+    "radium": "^0.12.2",
     "react": "0.13.3",
     "redux": "0.8.1"
   },
