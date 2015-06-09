@@ -9,7 +9,7 @@ import packages from '../stores/packages.js';
 import * as PacActions from '../actions/PacActions.js';
 
 // page
-import PackageList from '../pages/PackageList.jsx';
+import {PackageListPage} from 'pages';
 
 
 @connect(state => {
@@ -36,7 +36,7 @@ export default class PackageListController extends ValidatedComponent {
          return date.unix();
       }).reverse();
 
-    return <PackageList packages={packagesWithDateSorted} {...actions} />;
+    return <PackageListPage packages={packagesWithDateSorted} {...actions} />;
   }
 
 };

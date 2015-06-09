@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   resolve: {
     extensions: ['', '.js'],
-    modulesDirectories: ['node_modules', 'src'],
+    modulesDirectories: ['node_modules', 'src/components/web', 'src'],
   },
   entry: {
     app: [
