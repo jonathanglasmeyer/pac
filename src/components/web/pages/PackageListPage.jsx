@@ -13,13 +13,13 @@ export default class PackageList extends ValidatedComponent {
     super(props);
     this.state = {
       uninstallPackage: {}
-    }
+    };
   }
 
   static propTypes = {
     packages: PropTypes.array.isRequired,
     loadPackages: PropTypes.func.isRequired,
-    uninstall: PropTypes.func.isRequired,
+    uninstall: PropTypes.func.isRequired
 
   }
 
@@ -48,7 +48,7 @@ export default class PackageList extends ValidatedComponent {
           {`Do you want to uninstall ${uninstallPackage.Name}?`}
         </Dialog>
 
-        {packages.map((pack,i) =>
+        {packages.map((pack, i) =>
           <PackageListItem
             onClick={::this.onItemClick}
             key={i}
@@ -64,4 +64,4 @@ export default class PackageList extends ValidatedComponent {
   }
 
 
-};
+}

@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react';
-import ValidatedComponent from 'utils/ValidatedComponent.jsx'
+import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 const style = {
   fontSize: 16,
-  lineHeight: 24
-}
+  lineHeight: '24px'
+};
 
 @Radium.Enhancer
 export default class Subhead extends ValidatedComponent {
@@ -15,9 +15,9 @@ export default class Subhead extends ValidatedComponent {
 
   render() {
 
-    return <span>
+    return <span style={style}>
       {this.props.children}
     </span>;
   }
 
-};
+}

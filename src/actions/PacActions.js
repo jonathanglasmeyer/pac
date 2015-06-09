@@ -5,7 +5,7 @@ function getPackagesFromStdout(stdout) {
   console.info('[PacActions.js] ', 'start');
   return stdout.split('\n\n')
     .map(packageLines => _.zipObject(packageLines.split('\n')
-        .map(line => line.split(/\s+\:\s+/))))
+        .map(line => line.split(/\s+\:\s+/))));
 
 }
 
@@ -28,7 +28,7 @@ export function loadPackages() {
     // [m] : from aur
     // [i] : info
     console.info('[PacActions.js] ', 'start');
-    exec('pacman -Qemi', {maxBuffer: 800*1024})
+    exec('pacman -Qemi', {maxBuffer: 800 * 1024})
       .then(result => {
         console.info('[PacActions.js] ', 'got them from stdout');
         const packages = getPackagesFromStdout(result.stdout);
@@ -41,7 +41,7 @@ export function loadPackages() {
 
 export function uninstall(pack) {
   return perform => {
-    exec(`sudo pacman -Rns --noconfirm ${pack['Name']}`).then(({stdout}) => {
+    exec(`sudo pacman -Rns --noconfirm ${pack.Name}`).then(({stdout}) => {
       console.info('[PacActions.js] ', stdout);
       perform(loadPackages());
     }).catch((e) => console.info(e));

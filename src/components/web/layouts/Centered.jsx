@@ -7,7 +7,7 @@ const style = {
   alignItems: 'center',
   width: '100vw',
   height: '100vh'
-}
+};
 
 /**
  * centers it's children horizontally and vertically
@@ -16,7 +16,7 @@ const style = {
 export default class Centered extends Component {
 
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node
   }
 
   render() {

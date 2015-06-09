@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
-import ValidatedComponent from 'utils/ValidatedComponent.jsx'
-
+import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 const style = {
   base: {
@@ -37,7 +36,7 @@ const style = {
 };
 
 @Radium.Enhancer
-export default class ListItem extends Component {
+export default class ListItem extends ValidatedComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -61,4 +60,4 @@ export default class ListItem extends Component {
     </li>;
   }
 
-};
+}

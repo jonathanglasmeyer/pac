@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import ValidatedComponent from 'utils/ValidatedComponent.jsx'
+import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 import Centered from '../layouts/Centered.jsx';
 import {CircularProgress} from 'material-ui';
@@ -7,7 +7,7 @@ import {Color} from 'styles/vars';
 
 const style = {
   color: Color.gray
-}
+};
 
 @Radium.Enhancer
 export default class LoadingPage extends ValidatedComponent {
@@ -25,4 +25,4 @@ export default class LoadingPage extends ValidatedComponent {
     </Centered>;
   }
 
-};
+}

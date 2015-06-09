@@ -12,7 +12,7 @@ const style = {
   secondary: {
     color: Color.text.secondary
   }
-}
+};
 
 @Radium.Enhancer
 export default class Body extends ValidatedComponent {
@@ -31,4 +31,4 @@ export default class Body extends ValidatedComponent {
     </span>;
   }
 
-};
+}

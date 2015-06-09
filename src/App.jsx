@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
-import ValidatedComponent from 'utils/ValidatedComponent.jsx'
+import React from 'react';
+import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 // material ui
-import {AppBar, Dialog} from 'material-ui';
+import {AppBar} from 'material-ui';
 
 var mui = require('material-ui');
 var ThemeManager = new mui.Styles.ThemeManager();
@@ -37,7 +37,7 @@ export default class App extends ValidatedComponent {
         <PackageListController />;
       </main>
 
-    </div>
+    </div>;
   }
 
   onMainClick() {

@@ -24,6 +24,7 @@
     "react"
   ],
   "globals": {
-    "Radium": true
+    "Radium": true,
+    "_": true
   }
 }

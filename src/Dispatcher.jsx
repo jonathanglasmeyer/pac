@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {createDispatcher, Provider, composeStores} from 'redux';
 
 import * as stores from './stores/index.js';
@@ -12,7 +12,7 @@ export default class Dispatcher extends Component {
   render() {
     return <Provider dispatcher={dispatcher}>
       {() => <App /> }
-    </Provider>
+    </Provider>;
   }
 
 }

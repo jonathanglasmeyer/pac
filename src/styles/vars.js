@@ -4,4 +4,4 @@ export const Color = {
     secondary: 'rgba(0,0,0,.54)'
   }
 
-}
+};
