@@ -35,7 +35,7 @@ const style = {
 
 };
 
-@Radium.Enhancer
+@Radium
 export default class ListItem extends ValidatedComponent {
 
   static propTypes = {

@@ -4,7 +4,7 @@ import React, {PropTypes} from 'react';
 import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 // redux
-import { connect, bindActions } from 'redux';
+import {connect, bindActionCreators} from 'redux';
 import * as PacActions from '../actions/PacActions.js';
 
 // page
@@ -19,13 +19,13 @@ import {PackageListPage} from 'pages';
 export default class PackageListController extends ValidatedComponent {
 
   static propTypes = {
-    dispatcher: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
     packages: PropTypes.array.isRequired
   }
 
   render() {
-    const {packages, dispatcher} = this.props;
-    const actions = bindActions(PacActions, dispatcher);
+    const {packages, dispatch} = this.props;
+    const actions = bindActionCreators(PacActions, dispatch);
 
     const format = 'ddd DD MMM YYYY hh:mm:ss Z';
     const packagesWithDateSorted =

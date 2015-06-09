@@ -13,6 +13,10 @@ export default process.env.NODE_ENV === 'production' ? React.Component : class P
   validateProps(props) {
     const {displayName, name, propTypes} = this.constructor;
     const componentName = displayName || name;
+    if (~componentName.indexOf('Radium')) {
+      return;
+    }
+
     if (!propTypes) {
       console.warn(`There are no PropTypes specified on component "${componentName}". Cannot validate props. The given props are: `, props);
       return;

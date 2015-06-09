@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import {createDispatcher, Provider, composeStores} from 'redux';
+import {createRedux, Provider} from 'redux';
 
 import * as stores from './stores/index.js';
 
 import App from './App.jsx';
 
-const dispatcher = createDispatcher(composeStores(stores));
+const redux = createRedux(stores);
 
 export default class Dispatcher extends Component {
 
   render() {
-    return <Provider dispatcher={dispatcher}>
+    return <Provider redux={redux}>
       {() => <App /> }
     </Provider>;
   }

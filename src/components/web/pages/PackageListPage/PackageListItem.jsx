@@ -3,7 +3,7 @@ import ValidatedComponent from 'utils/ValidatedComponent.jsx';
 
 import {ListItem, Body, Subhead} from '../../widgets/index.js';
 
-@Radium.Enhancer
+@Radium
 export default class PackageListItem extends ValidatedComponent {
 
   static propTypes = {

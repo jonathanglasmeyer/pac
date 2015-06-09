@@ -6,11 +6,11 @@ const style = {
   lineHeight: '24px'
 };
 
-@Radium.Enhancer
+@Radium
 export default class Subhead extends ValidatedComponent {
 
   static propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node
   }
 
   render() {
