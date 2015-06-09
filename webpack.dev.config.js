@@ -16,7 +16,11 @@ module.exports = {
     publicPath: '/public/',
     filename: 'bundle.js',
   },
+
   module: {
+    preLoaders: [
+      {test: /\.jsx?$/, loader: "eslint-loader", exclude: /node_modules/}
+    ],
     loaders: [
       {test: /\.jsx?$/, exclude: /node_modules/, loaders:
         ['babel-loader?stage=0&optional=runtime']},
@@ -32,5 +36,8 @@ module.exports = {
         "_": 'lodash',
     })
   ],
+  eslint: {
+    configFile: '.eslintrc'
+  },
   devtool: 'eval-source-map'
 };

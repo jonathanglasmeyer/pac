@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import ValidatedComponent from 'utils/ValidatedComponent.jsx'
 
 // redux

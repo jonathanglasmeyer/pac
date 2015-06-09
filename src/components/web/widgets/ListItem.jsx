@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import ValidatedComponent from 'utils/ValidatedComponent.jsx'
 
 
@@ -29,6 +29,9 @@ const style = {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column'
+  },
+  big: {
+    height: 40
   }
 
 };
@@ -43,8 +46,8 @@ export default class ListItem extends Component {
   }
 
   render() {
-    const {children, onClick, left} = this.props;
-    return <li style={[style.base]} {...this.props}>
+    const {children, onClick, left, big} = this.props;
+    return <li style={[style.base, big && style.big]} {...this.props}>
 
       {left &&
         <div style={[style.left]}>
