@@ -26,11 +26,7 @@ export const loadPackages = ({aur = false} = {}) => async (dispatch) => {
       };
     });
     const packagesDateSorted = _sortBy(packagesParsed, (pac) => pac.date.unix()).reverse();
-    const packagesWithDummy = [
-    {description: '...', date: moment().subtract(10, 'days'), name: 'Test'},
-      ...packagesDateSorted,
-    ];
-    dispatch({type: 'LOAD_PACKAGES', packages: packagesWithDummy});
+    dispatch({type: 'LOAD_PACKAGES', packages: packagesDateSorted});
   } catch (e) {
     console.error('[index.js] ', e);
   }
