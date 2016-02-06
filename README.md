@@ -1,17 +1,24 @@
 # pac
-All GUIs for [Arch Linux](https://www.archlinux.org/)'s package manager pacman i tried so far do not show enough love for UI & UX. This is an WIP attempt to fix that.
+A GUI for the Arch Linux package manager `pacman`.
+![pac-new](https://cloud.githubusercontent.com/assets/3755413/12867963/b8587984-ccfb-11e5-8fe6-ce0b16f390c4.png)
 
-### using
+### tech used
 - [react](https://facebook.github.io/react)
 - [redux](https://github.com/gaearon/redux)
 - [electron](http://electron.atom.io/)
-- [material-ui](http://material-ui.com/#/)
-- [radium](http://projects.formidablelabs.com/radium/)
+- CSS modules
 
-### behind the scenes
-- this basically wraps the mystical pacman cli flag-ridden incantations, calling them with nodes `exec`.
-- if you want to do stuff with `sudo`, you got to run the whole tool with `sudo`. i'd like to know a better way to programmatically call node's `exec` with sudo rights. anyone?
+### run it
+- `npm install`
+- build the app with `npm build:prod`
+- start the app with `npm start`
 
-### first impression:
-![pac3a](https://cloud.githubusercontent.com/assets/3755413/8052483/492115d0-0e88-11e5-854b-4c06c9e214b0.png)
-![pac3b](https://cloud.githubusercontent.com/assets/3755413/8052484/4921f48c-0e88-11e5-9791-624c43c5046f.png)
+### develop it
+- `npm install`
+- watch the app with `npm watch:dev`
+- start the app with `npm start:dev` in another terminal
+
+### How it works
+- it calls pacman commands with node `exec`.
+- that's why you have to start the thing with `sudo`. Got a better idea? :)
+
