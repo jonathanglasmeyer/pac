@@ -1,6 +1,7 @@
 # pac
 A GUI for the Arch Linux package manager `pacman`.
-![pac-new](https://cloud.githubusercontent.com/assets/3755413/12867963/b8587984-ccfb-11e5-8fe6-ce0b16f390c4.png)
+
+![pac-new-2](https://cloud.githubusercontent.com/assets/3755413/12868021/148a9808-ccfd-11e5-8807-c5c8d9f74f6d.png)
 
 ### tech used
 - [react](https://facebook.github.io/react)
