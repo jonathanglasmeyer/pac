@@ -42,7 +42,7 @@ export default class ListItem extends ValidatedComponent {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
     left: PropTypes.node
-  }
+  };
 
   render() {
     const {children, onClick, left, big} = this.props;

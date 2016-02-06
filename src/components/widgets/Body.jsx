@@ -20,8 +20,7 @@ export default class Body extends ValidatedComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     secondary: PropTypes.bool
-
-  }
+  };
 
   render() {
     const {secondary} = this.props;

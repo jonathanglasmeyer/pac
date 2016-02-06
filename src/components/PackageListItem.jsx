@@ -10,7 +10,7 @@ export default class PackageListItem extends ValidatedComponent {
     pack: PropTypes.object.isRequired,
     uninstall: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired // for parent
-  }
+  };
 
   render() {
     const {pack, onClick} = this.props;

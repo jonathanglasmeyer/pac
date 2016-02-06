@@ -10,7 +10,7 @@ export default class List extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired
-  }
+  };
 
   render() {
 

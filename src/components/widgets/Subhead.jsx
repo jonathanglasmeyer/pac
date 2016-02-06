@@ -11,7 +11,7 @@ export default class Subhead extends ValidatedComponent {
 
   static propTypes = {
     children: PropTypes.node
-  }
+  };
 
   render() {
 

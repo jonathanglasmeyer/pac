@@ -17,7 +17,7 @@ export default class Centered extends Component {
 
   static propTypes = {
     children: PropTypes.node
-  }
+  };
 
   render() {
     const {children} = this.props;
