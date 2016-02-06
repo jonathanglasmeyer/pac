@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import PackageList from './PackageList';
-import {Page} from './widgets';
+import Page from './Page';
 import Notification from 'react-notification';
 
 const notificationStyle = (type) => ({
@@ -10,11 +10,7 @@ const notificationStyle = (type) => ({
     fontSize: '14px',
     marginRight: 20,
     marginBottom: -20,
-    // top: 20,
   },
-  // active: {
-  //   left: '3rem',
-  // },
 });
 
 export default class App extends Component {
