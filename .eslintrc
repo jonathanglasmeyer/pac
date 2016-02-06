@@ -1,30 +1,67 @@
 {
   "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true,
-    "blockBindings": true
-  },
+  "plugins": ["babel"],
+  "extends": "airbnb",
   "rules": {
-    "quotes": [2, "single"],
-    "eol-last": [0],
-    "no-alert": 0,
-    "no-mixed-requires": [0],
-    "no-underscore-dangle": [0],
-    "strict": [2, "never"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2,
+    "no-console": 0,
+    "no-multi-spaces": 2,
+    "no-nested-ternary": 0,
+    "no-else-return": 0,
+    "block-scoped-var": 0,
+    "prefer-arrow-callback": 2,
+    "prefer-template": 2,
+    "new-cap": 0,
+    "one-var": 0,
+    "no-dupe-keys": 2,
+    "spaced-comment": 0,
+    "id-length": 0,
+    "no-unused-expressions": 0,
+    "object-curly-spacing": 0,
+    "babel/object-curly-spacing": [2, "never"],
+    "babel/object-shorthand": 2,
+    "babel/arrow-parens": 2,
+    "jsx-quotes": [2, "prefer-single"],
+    "react/wrap-multilines": 0,
+    "react/jsx-curly-spacing": [2, "never"],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-max-props-per-line": [2, { "maximum": 4 }],
+    "react/sort-comp": [2, {
+      order: [
+        'lifecycle',
+        'render',
+        '/^_render.+$/',
+        '/^_handle.+$/',
+        'everything-else'
+      ],
+      "groups": {
+         "lifecycle": [
+           "displayName",
+           "propTypes",
+           "defaultProps",
+           "contextTypes",
+           "childContextTypes",
+           "getChildContext",
+           "fromStores",
+           "constructor",
+           "componentWillMount",
+           "componentDidMount",
+           "componentWillReceiveProps",
+           "shouldComponentUpdate",
+           "componentWillUpdate",
+           "componentDidUpdate",
+           "componentWillUnmount"
+         ]
+      }
+    }]
   },
-  "plugins": [
-    "react"
-  ],
   "globals": {
-    "Radium": true,
-    "_": true
+    "it": false,
+    "afterEach": false,
+    "beforeEach": false,
+    "before": false,
+    "after": false,
+    "describe": false,
+    "expect": false,
+    "assert": false
   }
 }
