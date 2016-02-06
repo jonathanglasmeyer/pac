@@ -1,0 +1,33 @@
+.item {
+  cursor: pointer;
+  padding: 10px 20px;
+  padding-top: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  // margin-bottom: 10px;
+  &:hover {
+    background: #444;
+  }
+  &:active {
+    background: rgba(255,255,255,.13);
+  }
+}
+
+.item:first-child {
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.itemTitle {
+  line-height: 12px;
+}
+
+.itemDate {
+  color: #888;
+  font-size: 14px;
+  font-family: 'Arial';
+}
+
+.itemDescription {
+  font-size: 14px;
+  font-family: 'Arial';
+  color: #aaa;
+}

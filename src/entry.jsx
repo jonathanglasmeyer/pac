@@ -12,7 +12,10 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 import * as actionCreators from './actions';
 
 const AppContainer = connect(
-  (state) => ({packages: state.packages}),
+  (state) => ({
+    packages: state.packages,
+    status: state.status,
+  }),
   actionCreators,
 )(App);
 

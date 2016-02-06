@@ -1,20 +1,20 @@
 import React from 'react';
-// import ValidatedComponent from 'utils/ValidatedComponent.jsx';
+import styles from './PackageList.less.module';
 
-// import {List} from 'widgets';
-// import {PackageListItem} from 'pages/PackageListPage';
-// import {LoadingPage} from 'pages';
+const PackageListItem = ({children: pac, onUninstall}) => {
+  const relativeDate = pac.date.fromNow();
+  return <div className={styles.item} onClick={() => onUninstall(pac.name)}>
+    <p className={styles.itemTitle}>{`${pac.name} `}<span className={styles.itemDate}>{`(${relativeDate})`}</span></p>
+    <p className={styles.itemDescription}>{`${pac.description} (${pac.size})`}</p>
+  </div>;
+};
 
-// import {Dialog, Snackbar} from 'material-ui';
-
-const PackageListItem = ({children: pac}) => <div>
-  {pac.Name}
-</div>;
-
-export default ({packages}) => {
-  console.info('[PackageList.jsx] packages: ', packages);
+export default ({packages, onUninstall}) => {
+  if (!packages.length) {
+    return <div style={{color: '#333'}}>Crunching...</div>;
+  }
   return <div>
     {packages.map((pac, idx) =>
-      <PackageListItem key={idx}>{pac}</PackageListItem>)}
+      <PackageListItem key={idx} onUninstall={onUninstall}>{pac}</PackageListItem>)}
   </div>;
 };

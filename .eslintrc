@@ -3,6 +3,8 @@
   "plugins": ["babel"],
   "extends": "airbnb",
   "rules": {
+    "arrow-body-style": 0,
+    "max-len": 0,
     "no-console": 0,
     "no-multi-spaces": 2,
     "no-nested-ternary": 0,
