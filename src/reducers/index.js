@@ -1,4 +1,4 @@
-import packages from './packages';
+import packages from '../pac';
 import status from './status';
 import {combineReducers} from 'redux';
 

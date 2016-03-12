@@ -6,7 +6,6 @@ import {Notification} from 'react-notification';
 import * as appActions from './AppActions';
 import PackageList from '../package/PackageList';
 import Page from './Page';
-console.info('[App.js] actions: ', appActions);
 
 const notificationStyle = (type) => ({
   bar: {

@@ -5,7 +5,6 @@
 // const format = 'ddd DD MMM YYYY hh:mm:ss Z';
 
 
-// const DEVELOPMENT = process.env.NODE_ENV === 'development';
 
 // const getPackagesFromStdout = (stdout) => {
 //   return stdout.trim().split('\n\n')
@@ -59,9 +58,6 @@
 //     dispatch({type: 'STATUS', status});
 //   }
 // };
-
-
-export const loadPackages = () => ({type: 'LOAD_PACKAGES_REQUEST'});
 
 
   // [Q]uery
