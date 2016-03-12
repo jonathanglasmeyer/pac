@@ -6,6 +6,16 @@ A GUI for the Arch Linux package manager `pacman` built with [Electron](http://e
 ### Ideas used
 - This project uses a [topical directory structure](http://marmelab.com/blog/2015/12/17/react-directory-structure.html).
 
+### Libraries used
+- [React](https://facebook.github.io/react)
+- [Redux](https://github.com/rackt/redux)
+- "Vanilla" Webpack HMR Hot Reloading for Redux as demonstrated [here](https://github.com/reactjs/redux/commit/6d45dfda431b0136b9b3845ca79e81768b95cc1e).
+- [CSS Modules](https://github.com/css-modules/css-modules).
+- [redux-saga](https://github.com/yelouafi/redux-saga) for async side effects
+- [AVA](https://github.com/sindresorhus/ava) for testing them
+- soon: [Enzyme](https://github.com/airbnb/enzyme) for testing react components
+- [recompose](https://github.com/acdlite/recompose) to exclusively use stateless functional components
+
 ### run it
 - `npm install`
 - build the app with `npm build:prod`
