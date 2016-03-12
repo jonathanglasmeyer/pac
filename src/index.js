@@ -15,7 +15,7 @@ const logger = createLogger({
 
 import * as sagas from './sagas';
 const sagaMiddleware = createSagaMiddleware(
-  sagas.watchLoadPackages,
+  ...Object.values(sagas),
 );
 
 const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware, logger));

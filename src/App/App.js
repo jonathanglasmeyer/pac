@@ -27,17 +27,17 @@ const StatusNotification = ({status, onDismiss}) => <Notification
 
 export class App extends Component {
   static propTypes = {
-    status: PropTypes.object,
+    app: PropTypes.object,
 
     // For resetting status when clicking notification bar
     setStatus: PropTypes.func.isRequired,
   };
 
   render() {
-    const {status} = this.props;
+    const {app} = this.props;
     return <Page>
       <PackageList />
-      <StatusNotification onDismiss={this.resetStatus} status={status} />
+      <StatusNotification onDismiss={this.resetStatus} status={app.status} />
     </Page>;
   }
 
@@ -48,7 +48,7 @@ export class App extends Component {
 
 export default connect(
   (state) => ({
-    status: state.status,
+    app: state.app,
   }),
   appActions,
 )(App);

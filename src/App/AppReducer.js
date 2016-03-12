@@ -1,6 +1,6 @@
-export default (state = null, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
-    case 'STATUS':
+    case 'RECEIVE_STATUS':
       return {status: action.status};
     default:
       return state;

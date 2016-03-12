@@ -10,6 +10,10 @@ const parseStdout = (stdout) => {
         .map((line) => line.split(/\s+\:\s+/))));
 };
 
+/**
+ * Calls pacman's command for listing packages, parses stdout
+ * and returns a nice list of date sorted package objects.
+ */
 export const getPackages = async (aur) => {
   const cmd = aur ? 'pacman -Qemi' : 'pacman -Qeni';
   try {
@@ -32,3 +36,25 @@ export const getPackages = async (aur) => {
     console.info('[pacman.js] ', 'e');
   }
 };
+
+/**
+ * Uninstalls a package and returns a status with success or error information.
+ */
+export const uninstallPackage = async (packageName) => {
+  const cmd = `sudo pacman -Rs --noconfirm ${packageName}`;
+  try {
+    const msg = 'Not really uninstalling in DEVELOPMENT.';
+    const {stdout} = __DEV__ ? {stdout: msg} : await exec(cmd, {capture: ['stdout', 'stderr']});
+    return {type: 'success', text: stdout.toString()};
+  } catch ({stdout, stderr}) {
+    const text = `${stdout.toString()}\n${stderr.toString()}`;
+    return {text, type: 'error'};
+  }
+};
+
+// [Q]uery
+// [e]xplicitly installed
+// [m] : from aur
+// [i] : info
+// const aurPackages = 'pacman -Qemi';
+// const normalPackages = 'pacman -Qeni';

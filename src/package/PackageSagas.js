@@ -10,15 +10,20 @@ const getMockPackages = () => Promise.resolve(mockPackagesRaw.map((pack) => ({
   date: moment(new Date(pack.date)),
 })));
 
-
-// Our worker Saga: will perform the async increment task
 function* loadPackages() {
   const packages = yield call(__DEV__ ? getMockPackages : pacman.getPackages);
-
   yield put({type: 'RECEIVE_PACKAGES', packages});
 }
 
-// Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
+function* uninstallPackage() {
+  const status = yield call(pacman.uninstallPackage);
+  yield put({type: 'RECEIVE_STATUS', status});
+}
+
 export function* watchLoadPackages() {
   yield* takeEvery('LOAD_PACKAGES', loadPackages);
+}
+
+export function* watchUninstallPackages() {
+  yield* takeEvery('UNINSTALL_PACKAGE', uninstallPackage);
 }

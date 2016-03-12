@@ -1,1 +1,1 @@
-export const setStatus = (status) => ({type: 'STATUS', status});
+export const setStatus = (status) => ({type: 'RECEIVE_STATUS', status});
