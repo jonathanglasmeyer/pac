@@ -26,7 +26,7 @@ const wrapExtractTextStyle = (loaders) => {
 
 const config = {
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js'],
     modulesDirectories: ['node_modules', 'src'],
   },
   entry: {
