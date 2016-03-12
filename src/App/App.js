@@ -4,7 +4,7 @@ import React, {Component, PropTypes} from 'react';
 import {Notification} from 'react-notification';
 
 import * as appActions from './AppActions';
-import PackageList from '../package/PackageList';
+import PackageList from '../domains/package/PackageList';
 import Page from './Page';
 
 const notificationStyle = (type) => ({

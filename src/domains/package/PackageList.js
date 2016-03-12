@@ -13,10 +13,16 @@ const component = (propTypes, ...otherFns) => compose(
   pure,
 );
 
-export const PackageListItem = pure(({children: pac, onClick}) => {
+export const PackageListItem = pure(({children: pac, onUninstall}) => {
   const relativeDate = pac.date.fromNow();
 
-  const handleClick = () => onClick(pac.name);
+  const handleClick = () => {
+    const yes = window.confirm(`Uninstall ${pac.name}?`); // eslint-disable-line no-alert
+    if (yes) {
+      onUninstall(pac.name);
+    }
+  };
+
   return <div className={styles.item} onClick={handleClick}>
     <p className={styles.itemTitle}>{`${pac.name} `}<span className={styles.itemDate}>{`(${relativeDate})`}</span></p>
     <p className={styles.itemDescription}>{`${pac.description} (${pac.size})`}</p>
@@ -40,7 +46,7 @@ export const PackageList = component({
   }
   return <div>
     {packages.map((pac, idx) =>
-      <PackageListItem key={idx} onClick={uninstallPackage}>{pac}</PackageListItem>)}
+      <PackageListItem key={idx} onUninstall={uninstallPackage}>{pac}</PackageListItem>)}
   </div>;
 });
 
