@@ -30,3 +30,5 @@ A GUI for the Arch Linux package manager `pacman` built with [Electron](http://e
 - it calls pacman commands with node `exec`.
 - that's why you have to start the thing with `sudo`. Got a better idea? :)
 
+### Contributing
+PRs are very welcome. Either come up with your own ideas or take a look at the existing issues. There are some ideas waiting to be explored. :)
