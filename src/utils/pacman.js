@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
-const exec = window.require('child-process-promise').exec;
+// const exec = window.require('child-process-promise').exec;
+import {exec} from 'child-process-promise';
 
 const FORMAT = 'ddd DD MMM YYYY hh:mm:ss Z';
 

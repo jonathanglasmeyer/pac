@@ -32,7 +32,7 @@ const config = {
   entry: {
     app: production
       ? ['./src/index.js']
-      : ['webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr', './src/index.js'],
+      : ['webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr&reload=true', './src/index.js'],
   },
   output: {
     path: path.join(__dirname, 'dist'),

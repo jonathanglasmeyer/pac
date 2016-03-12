@@ -1,1 +1,4 @@
-export * from './package/PackageSagas';
+export {
+  watchLoadPackages,
+  watchUninstallPackage,
+} from './package/PackageSagas';
