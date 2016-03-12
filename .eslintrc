@@ -57,6 +57,7 @@
     }]
   },
   "globals": {
+    "__DEV__": false,
     "it": false,
     "afterEach": false,
     "beforeEach": false,
