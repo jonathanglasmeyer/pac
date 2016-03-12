@@ -3,6 +3,8 @@ const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const validateWebpackConfig = require('webpack-validator');
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+
 
 const lessModuleLoader = (prod) => {
   const cssModulesOptions = prod ? '' : '&localIdentName=[name]__[local]___[hash:base64:5]';
@@ -16,18 +18,27 @@ const lessModuleLoader = (prod) => {
 
 const production = process.env.NODE_ENV === 'production';
 
+const wrapExtractTextStyle = (loaders) => {
+  return production
+    ? ExtractTextPlugin.extract(loaders, {publicPath: ''})
+    : `style-loader!${loaders}`;
+};
+
 const config = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     modulesDirectories: ['node_modules', 'src'],
   },
   entry: {
-    app: ['./src/entry.jsx'],
+    app: production
+      ? ['./src/index.js']
+      : ['webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr', './src/index.js'],
   },
   output: {
-    path: path.join(__dirname, 'public'),
-    publicPath: '/public/',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
+    libraryTarget: 'commonjs2',
+    publicPath: production ? '/dist/' : 'http://localhost:3000/dist/',
   },
   module: {
     loaders: [
@@ -38,14 +49,15 @@ const config = {
       },
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!less-loader',
+        include: /src/,
+        loader: wrapExtractTextStyle(`css-loader!postcss-loader!less-loader`),
       },
       {
         test: /\.(?:eot|ttf|woff2?)$/,
         loader: 'file-loader?name=[path][name]-[hash:6].[ext]&context=assets',
       },
     ].concat([
-      lessModuleLoader(false),
+      lessModuleLoader(production),
     ]),
   },
   postcss: [
@@ -64,10 +76,19 @@ const config = {
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /(de|en-gb|da|nl)$/),
   ].concat(production ? [
     new webpack.optimize.UglifyJsPlugin({
-      // compress: {drop_console: true},
+      compress: {drop_console: true},
+      screw_ie8: true,
       sourceMap: false, // This means dropping build time from ~45 sec to ~32 sec
-    })] : []),
-  devtool: 'hidden-source-map',
+    }),
+    new ExtractTextPlugin('style.css', {allChunks: true}),
+  ] : [
+  // development
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ]),
+  devtool: production ? 'hidden-source-map' : 'cheap-module-eval-source-map',
 };
+
+config.target = webpackTargetElectronRenderer(config);
 
 module.exports = validateWebpackConfig(config);

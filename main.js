@@ -26,7 +26,7 @@ function createWindow() {
 
   // mainWindow.hide();
   // and load the index.html of the app.
-  mainWindow.loadURL(`file://${__dirname}/public/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/src/index.html`);
 
   if (process.env.NODE_ENV !== 'production') {
     mainWindow.webContents.openDevTools();

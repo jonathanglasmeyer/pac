@@ -29,6 +29,5 @@ node_modules
 
 # App packaged
 release
+dist
 
-public/bundle.js
-public/bundle.js.map

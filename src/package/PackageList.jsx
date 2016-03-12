@@ -10,7 +10,8 @@ const PackageListItem = ({children: pac, onUninstall}) => {
 };
 
 export default ({packages, onUninstall}) => {
-  if (!packages.length) {
+
+  if (!packages || !packages.length) {
     return <div style={{color: '#333'}}>Crunching...</div>;
   }
   return <div>
@@ -18,3 +19,4 @@ export default ({packages, onUninstall}) => {
       <PackageListItem key={idx} onUninstall={onUninstall}>{pac}</PackageListItem>)}
   </div>;
 };
+
