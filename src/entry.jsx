@@ -6,9 +6,11 @@ import {Provider, connect} from 'react-redux';
 import rootReducer from './reducers';
 import thunk from 'redux-thunk';
 
+import createLogger from 'redux-logger';
+const logger = createLogger();
 
 import App from './components/App';
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 import * as actionCreators from './actions';
 
 const AppContainer = connect(
