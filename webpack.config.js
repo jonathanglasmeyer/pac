@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const validateWebpackConfig = require('webpack-validator');
 
 const lessModuleLoader = (prod) => {
   const cssModulesOptions = prod ? '' : '&localIdentName=[name]__[local]___[hash:base64:5]';
@@ -15,7 +16,7 @@ const lessModuleLoader = (prod) => {
 
 const production = process.env.NODE_ENV === 'production';
 
-module.exports = {
+const config = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     modulesDirectories: ['node_modules', 'src'],
@@ -68,3 +69,5 @@ module.exports = {
     })] : []),
   devtool: 'hidden-source-map',
 };
+
+module.exports = validateWebpackConfig(config);
