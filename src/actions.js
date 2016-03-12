@@ -6,6 +6,8 @@ const format = 'ddd DD MMM YYYY hh:mm:ss Z';
 
 import mockPackages from './mockPackages';
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development';
+
 const getPackagesFromStdout = (stdout) => {
   return stdout.trim().split('\n\n')
     .map((packageLines) => _fromPairs(packageLines.split('\n')
@@ -13,7 +15,7 @@ const getPackagesFromStdout = (stdout) => {
 };
 
 export const loadPackages = ({aur = false} = {}) => async (dispatch) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (DEVELOPMENT) {
     dispatch({type: 'LOAD_PACKAGES', packages: mockPackages.map((pac) => ({
       ...pac,
       date: moment(new Date(pac.date)),
@@ -45,7 +47,8 @@ export const loadPackages = ({aur = false} = {}) => async (dispatch) => {
 export const uninstall = (pacName) => async (dispatch) => {
   const cmd = `sudo pacman -Rs --noconfirm ${pacName}`;
   try {
-    const {stdout} = await exec(cmd, {capture: ['stdout', 'stderr']});
+    const msg = 'Not really uninstalling in DEVELOPMENT.';
+    const {stdout} = DEVELOPMENT ? {stdout: msg} : await exec(cmd, {capture: ['stdout', 'stderr']});
 
     const status = {type: 'success', text: stdout.toString()};
     dispatch({type: 'STATUS', status});
