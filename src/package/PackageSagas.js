@@ -1,17 +1,20 @@
 import {takeEvery} from 'redux-saga';
-import {put} from 'redux-saga/effects';
+import {put, call} from 'redux-saga/effects';
 import moment from 'moment';
 
-import mockPackages from '../mockPackages';
+import * as pacman from '../utils/pacman';
 
-// const DEVELOPMENT = process.env.NODE_ENV === 'development';
+import mockPackagesRaw from '../mockPackages';
+const getMockPackages = () => Promise.resolve(mockPackagesRaw.map((pack) => ({
+  ...pack,
+  date: moment(new Date(pack.date)),
+})));
+
 
 // Our worker Saga: will perform the async increment task
 function* loadPackages() {
-  const packages = mockPackages.map((pack) => ({
-    ...pack,
-    date: moment(new Date(pack.date)),
-  }));
+  const packages = yield call(__DEV__ ? getMockPackages : pacman.getPackages);
+
   yield put({type: 'RECEIVE_PACKAGES', packages});
 }
 

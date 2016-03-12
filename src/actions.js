@@ -1,16 +1,3 @@
-// import _fromPairs from 'lodash/fromPairs';
-// const exec = window.require('child-process-promise').exec;
-// import _sortBy from 'lodash/sortBy';
-// import moment from 'moment';
-// const format = 'ddd DD MMM YYYY hh:mm:ss Z';
-
-
-
-// const getPackagesFromStdout = (stdout) => {
-//   return stdout.trim().split('\n\n')
-//     .map((packageLines) => _fromPairs(packageLines.split('\n')
-//         .map((line) => line.split(/\s+\:\s+/))));
-// };
 
 // export const loadPackages = ({aur = false} = {}) => async (dispatch) => {
 //   if (DEVELOPMENT) {
