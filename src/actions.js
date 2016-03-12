@@ -4,6 +4,8 @@ import _sortBy from 'lodash/sortBy';
 import moment from 'moment';
 const format = 'ddd DD MMM YYYY hh:mm:ss Z';
 
+import mockPackages from './mockPackages';
+
 const getPackagesFromStdout = (stdout) => {
   return stdout.trim().split('\n\n')
     .map((packageLines) => _fromPairs(packageLines.split('\n')
@@ -11,6 +13,14 @@ const getPackagesFromStdout = (stdout) => {
 };
 
 export const loadPackages = ({aur = false} = {}) => async (dispatch) => {
+  if (process.env.NODE_ENV !== 'production') {
+    dispatch({type: 'LOAD_PACKAGES', packages: mockPackages.map((pac) => ({
+      ...pac,
+      date: moment(new Date(pac.date)),
+    }))});
+    return;
+  }
+
   const cmd = aur ? 'pacman -Qemi' : 'pacman -Qeni';
   try {
     const {stdout} = await exec(cmd, {maxBuffer: 800 * 1024});
