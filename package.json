@@ -5,9 +5,9 @@
   "scripts": {
     "build:dev": "webpack --config ./webpack.config.js",
     "build:prod": "NODE_ENV=production webpack --config ./webpack.config.js",
-    "start:dev": "electron .",
+    "start:dev": "NODE_ENV=development electron .",
     "start": "NODE_ENV=production electron .",
-    "watch:dev": "npm run build:dev -- -w",
+    "watch:dev": "NODE_ENV=development npm run build:dev -- -w",
     "watch:prod": "npm run build:prod -- -w"
   },
   "dependencies": {
