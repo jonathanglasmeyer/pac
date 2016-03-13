@@ -11,7 +11,7 @@ export const getMockPackages = () => Promise.resolve(mockPackagesRaw.map((pack) 
 })));
 
 export function* loadPackages() {
-  const packages = yield call(false ? getMockPackages : pacman.getPackages);
+  const packages = yield call(__DEV__ ? getMockPackages : pacman.getPackages);
   yield put({type: 'RECEIVE_PACKAGES', packages});
 }
 
