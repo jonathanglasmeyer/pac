@@ -1,4 +1,4 @@
-import {setStatus} from './AppActions'
+import * as AppActions from './AppActions'
 import * as mock from '../../test/fixtures'
 import {collectState} from '../../test/helpers'
 import reducer from './AppReducer'
@@ -6,7 +6,10 @@ import reducer from './AppReducer'
 describe('App', () => {
   describe('actions', () => {
     it('setStatus', () => {
-      assert.deepEqual(setStatus(mock.status), {type: 'SET_STATUS', payload: {status: mock.status}})
+      assert.deepEqual(
+        AppActions.setStatus(mock.status),
+        {type: 'SET_STATUS', payload: {status: mock.status}}
+      )
     })
   })
 
@@ -18,7 +21,7 @@ describe('App', () => {
 
     it('handles SET_STATUS', () => {
       const appState = {}
-      const r = reducer(appState, {type: 'SET_STATUS', payload: {status: mock.status}})
+      const r = reducer(appState, AppActions.setStatus(mock.status))
       assert.deepEqual(r, {status: mock.status})
     })
 
@@ -41,12 +44,12 @@ describe('App', () => {
     it('is correctly transformed by setStatus', async () => {
       const result = await collectState({
         reducer,
-        action: setStatus(mock.status),
+        action: AppActions.setStatus(mock.status),
       })
 
       assert(result.length === 1)
       assert.deepEqual(result[0], {
-        action: {type: 'SET_STATUS', payload: {status: mock.status}},
+        action: AppActions.setStatus(mock.status),
         result: {status: mock.status},
       })
     })

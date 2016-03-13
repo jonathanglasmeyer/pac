@@ -1,16 +1,19 @@
 import {takeEvery} from 'redux-saga'
 import {put, call} from 'redux-saga/effects'
 
+import * as PackageActions from './PackageActions'
+import * as AppActions from '../../App/AppActions'
+
 import * as pacman from '../../utils/pacman'
 
 export function* loadPackages() {
   const packages = yield call(pacman.getPackages)
-  yield put({type: 'RECEIVE_PACKAGES', payload: {packages}})
+  yield put(PackageActions.receivePackages(packages))
 }
 
 export function* uninstallPackage({payload: {name: packageName}}) {
   const status = yield call(pacman.uninstallPackage, packageName)
-  yield put({type: 'SET_STATUS', payload: {status}})
+  yield put(AppActions.setStatus(status))
 }
 
 export function* watchLoadPackages() {
