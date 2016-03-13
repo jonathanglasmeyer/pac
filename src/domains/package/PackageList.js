@@ -46,7 +46,6 @@ export const PackageList = component({
   </div>
 })
 
-console.info('[PackageList.js] PackageList: ', PackageList)
 export default connect(
   (state) => ({
     packages: state.packages,
