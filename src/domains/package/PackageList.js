@@ -1,6 +1,7 @@
 import styles from './PackageList.less.module';
 
 import React, {PropTypes} from 'react';
+import moment from 'moment';
 import {pure, compose, setPropTypes, lifecycle} from 'recompose';
 import {noop} from 'lodash';
 
@@ -14,7 +15,7 @@ const component = (propTypes, ...otherFns) => compose(
 );
 
 export const PackageListItem = pure(({children: pac, onUninstall}) => {
-  const relativeDate = pac.date.fromNow();
+  const relativeDate = moment(pac.date).fromNow();
 
   const handleClick = () => {
     const yes = window.confirm(`Uninstall ${pac.name}?`); // eslint-disable-line no-alert

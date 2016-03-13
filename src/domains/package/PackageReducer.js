@@ -1,7 +1,7 @@
-export default (state = [], action) => {
-  switch (action.type) {
+export default (state = [], {type, payload}) => {
+  switch (type) {
     case 'RECEIVE_PACKAGES':
-      return action.packages;
+      return payload.packages;
     default:
       return state;
   }

@@ -5,6 +5,9 @@ import {exec} from 'child-process-promise';
 
 const FORMAT = 'ddd DD MMM YYYY hh:mm:ss Z';
 
+import {packages as mockPackages} from '../../test/fixtures';
+export const getMockPackages = () => Promise.resolve(mockPackages);
+
 const parseStdout = (stdout) => {
   return stdout.trim().split('\n\n')
     .map((packageLines) => _.fromPairs(packageLines.split('\n')
@@ -16,6 +19,8 @@ const parseStdout = (stdout) => {
  * and returns a nice list of date sorted package objects.
  */
 export const getPackages = async (aur) => {
+  if (__DEV__) return getMockPackages();
+
   const cmd = aur ? 'pacman -Qemi' : 'pacman -Qeni';
   try {
     const {stdout} = await exec(cmd, {maxBuffer: 800 * 1024});

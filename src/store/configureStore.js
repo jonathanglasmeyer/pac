@@ -10,7 +10,7 @@ const logger = createLogger({
   collapsed: () => true,
 });
 
-const sagaMiddleware = createSagaMiddleware(
+export const sagaMiddleware = createSagaMiddleware(
   ...Object.values(sagas),
 );
 
