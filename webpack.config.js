@@ -44,7 +44,7 @@ const config = {
     loaders: [
       {
         test: /\.jsx?$/,
-        include: /src/,
+        exclude: /node_modules/,
         loader: 'babel',
       },
       {
