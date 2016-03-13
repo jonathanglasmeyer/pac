@@ -6,9 +6,9 @@ import _ from 'lodash';
  * Collect state results of multiple actions into array until count (of actions dispatched) has been reached.
  * count === 2 would collect the results until 2 actions have been fired.
  *
- * Returns an array of {action, result}, where
- * - the actions is the action dispatched
- * - and result is the resulting state slice
+ * Returns an array of {action, result} objects with
+ * - the dispatched action
+ * - and the result state slice
  */
 export default ({reducer, action, count = 1}) => {
   // Sinon can't spy on fns directly, so wrap it in an object
