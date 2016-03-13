@@ -1,4 +1,4 @@
 export {
   watchLoadPackages,
   watchUninstallPackage,
-} from './domains/package/PackageSagas';
+} from './domains/package/PackageSagas'

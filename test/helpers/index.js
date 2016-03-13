@@ -1,1 +1,1 @@
-export collectState from './collectState';
+export collectState from './collectState'

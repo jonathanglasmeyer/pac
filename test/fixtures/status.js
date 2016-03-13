@@ -1,1 +1,1 @@
-export default {text: 'foo', type: 'success'};
+export default {text: 'foo', type: 'success'}

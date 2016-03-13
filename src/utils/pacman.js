@@ -1,62 +1,62 @@
-import _ from 'lodash';
-import moment from 'moment';
+import _ from 'lodash'
+import moment from 'moment'
 // const exec = window.require('child-process-promise').exec;
-import {exec} from 'child-process-promise';
+import {exec} from 'child-process-promise'
 
-const FORMAT = 'ddd DD MMM YYYY hh:mm:ss Z';
+const FORMAT = 'ddd DD MMM YYYY hh:mm:ss Z'
 
-import {packages as mockPackages} from '../../test/fixtures';
-export const getMockPackages = () => Promise.resolve(mockPackages);
+import {packages as mockPackages} from '../../test/fixtures'
+export const getMockPackages = () => Promise.resolve(mockPackages)
 
 const parseStdout = (stdout) => {
   return stdout.trim().split('\n\n')
     .map((packageLines) => _.fromPairs(packageLines.split('\n')
-        .map((line) => line.split(/\s+\:\s+/))));
-};
+        .map((line) => line.split(/\s+\:\s+/))))
+}
 
 /**
  * Calls pacman's command for listing packages, parses stdout
  * and returns a nice list of date sorted package objects.
  */
 export const getPackages = async (aur) => {
-  if (__DEV__) return getMockPackages();
+  if (__DEV__) return getMockPackages()
 
-  const cmd = aur ? 'pacman -Qemi' : 'pacman -Qeni';
+  const cmd = aur ? 'pacman -Qemi' : 'pacman -Qeni'
   try {
-    const {stdout} = await exec(cmd, {maxBuffer: 800 * 1024});
-    const packages = parseStdout(stdout);
+    const {stdout} = await exec(cmd, {maxBuffer: 800 * 1024})
+    const packages = parseStdout(stdout)
 
     const packagesParsed = packages.map((pac) => {
-      const date = moment(pac['Install Date'], FORMAT);
+      const date = moment(pac['Install Date'], FORMAT)
       return {
         description: pac.Description,
         date,
         name: pac.Name,
         size: pac['Installed Size'],
-      };
-    });
+      }
+    })
 
-    const packagesDateSorted = _.sortBy(packagesParsed, (pac) => pac.date.unix()).reverse();
-    return packagesDateSorted;
+    const packagesDateSorted = _.sortBy(packagesParsed, (pac) => pac.date.unix()).reverse()
+    return packagesDateSorted
   } catch (e) {
-    console.info('[pacman.js] ', 'e');
+    console.info('[pacman.js] ', 'e')
   }
-};
+}
 
 /**
  * Uninstalls a package and returns a status with success or error information.
  */
 export const uninstallPackage = async (packageName) => {
-  const cmd = `sudo pacman -Rs --noconfirm ${packageName}`;
+  const cmd = `sudo pacman -Rs --noconfirm ${packageName}`
   try {
-    const msg = 'Not really uninstalling in DEVELOPMENT.';
-    const {stdout} = __DEV__ ? {stdout: msg} : await exec(cmd, {capture: ['stdout', 'stderr']});
-    return {type: 'success', text: stdout.toString()};
+    const msg = 'Not really uninstalling in DEVELOPMENT.'
+    const {stdout} = __DEV__ ? {stdout: msg} : await exec(cmd, {capture: ['stdout', 'stderr']})
+    return {type: 'success', text: stdout.toString()}
   } catch ({stdout, stderr}) {
-    const text = `${stdout.toString()}\n${stderr.toString()}`;
-    return {text, type: 'error'};
+    const text = `${stdout.toString()}\n${stderr.toString()}`
+    return {text, type: 'error'}
   }
-};
+}
 
 // [Q]uery
 // [e]xplicitly installed

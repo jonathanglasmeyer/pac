@@ -1,11 +1,11 @@
-import {connect} from 'react-redux';
-import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux'
+import React, {Component, PropTypes} from 'react'
 
-import {Notification} from 'react-notification';
+import {Notification} from 'react-notification'
 
-import * as appActions from './AppActions';
-import PackageList from '../domains/package/PackageList';
-import Page from './Page';
+import * as appActions from './AppActions'
+import PackageList from '../domains/package/PackageList'
+import Page from './Page'
 
 const notificationStyle = (type) => ({
   bar: {
@@ -15,7 +15,7 @@ const notificationStyle = (type) => ({
     marginRight: 20,
     marginBottom: -20,
   },
-});
+})
 
 const StatusNotification = ({status, onDismiss}) => <Notification
   isActive={!!status}
@@ -23,7 +23,7 @@ const StatusNotification = ({status, onDismiss}) => <Notification
   style={status ? notificationStyle(status.type) : {}}
   dismissAfter={5000}
   onDismiss={onDismiss}
-/>;
+/>
 
 export class App extends Component {
   static propTypes = {
@@ -34,15 +34,15 @@ export class App extends Component {
   };
 
   render() {
-    const {app} = this.props;
+    const {app} = this.props
     return <Page>
       <PackageList />
       <StatusNotification onDismiss={this.resetStatus} status={app.status} />
-    </Page>;
+    </Page>
   }
 
   resetStatus = () => {
-    this.props.setStatus(null);
+    this.props.setStatus(null)
   }
 }
 
@@ -51,4 +51,4 @@ export default connect(
     app: state.app,
   }),
   appActions,
-)(App);
+)(App)
