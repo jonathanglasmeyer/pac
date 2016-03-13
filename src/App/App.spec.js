@@ -6,7 +6,7 @@ import reducer from './AppReducer'
 describe('App', () => {
   describe('actions', () => {
     it('setStatus', () => {
-      assert.deepEqual(setStatus(mock.status), {type: 'RECEIVE_STATUS', payload: {status: mock.status}})
+      assert.deepEqual(setStatus(mock.status), {type: 'SET_STATUS', payload: {status: mock.status}})
     })
   })
 
@@ -16,9 +16,9 @@ describe('App', () => {
       assert.deepEqual(r, {})
     })
 
-    it('handles RECEIVE_STATUS', () => {
+    it('handles SET_STATUS', () => {
       const appState = {}
-      const r = reducer(appState, {type: 'RECEIVE_STATUS', payload: {status: mock.status}})
+      const r = reducer(appState, {type: 'SET_STATUS', payload: {status: mock.status}})
       assert.deepEqual(r, {status: mock.status})
     })
 
@@ -46,7 +46,7 @@ describe('App', () => {
 
       assert(result.length === 1)
       assert.deepEqual(result[0], {
-        action: {type: 'RECEIVE_STATUS', payload: {status: mock.status}},
+        action: {type: 'SET_STATUS', payload: {status: mock.status}},
         result: {status: mock.status},
       })
     })

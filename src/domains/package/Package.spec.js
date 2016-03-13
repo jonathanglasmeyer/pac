@@ -11,6 +11,7 @@ import {
 } from './PackageSagas'
 
 import * as pacman from '../../utils/pacman'
+import rootReducer from '../../reducers';
 
 describe('Package', () => {
   describe('actions', () => {
@@ -45,7 +46,7 @@ describe('Package', () => {
   })
 
   describe('state', () => {
-    it('state loadPackages', async () => {
+    it('loadPackages', async () => {
       const result = await collectState({
         reducer,
         action: loadPackages(),
@@ -62,6 +63,39 @@ describe('Package', () => {
       assert.deepEqual(result[1], {
         action: {type: 'RECEIVE_PACKAGES', payload: {packages: mock.packages}},
         result: mock.packages,
+      })
+    })
+
+    it('uninstallPackage', async () => {
+      const result = await collectState({
+        reducer: rootReducer,
+        action: uninstallPackage('foo'),
+        count: 2,
+      })
+
+      assert(result.length === 2)
+
+      assert.deepEqual(result[0], {
+        action: {type: 'UNINSTALL_PACKAGE', payload: {name: 'foo'}},
+        result: {
+          app: {},
+          packages: [],
+        },
+      })
+
+      const devStatus = {
+        text: 'Not really uninstalling in DEVELOPMENT.',
+        type: 'success',
+      }
+
+      assert.deepEqual(result[1], {
+        action: {type: 'SET_STATUS', payload: {status: devStatus}},
+        result: {
+          app: {
+            status: devStatus,
+          },
+          packages: [],
+        },
       })
     })
   })
@@ -82,7 +116,7 @@ describe('Package', () => {
       const status = {type: 'success', text: 'It worked'}
       const gen = uninstallPackageGen({payload: {name}})
       assert.deepEqual(gen.next().value, call(pacman.uninstallPackage, name))
-      assert.deepEqual(gen.next(status).value, put({type: 'RECEIVE_STATUS', status}))
+      assert.deepEqual(gen.next(status).value, put({type: 'SET_STATUS', status}))
       assert.deepEqual(gen.next(), {done: true, value: undefined})
     })
   })

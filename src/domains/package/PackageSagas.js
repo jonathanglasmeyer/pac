@@ -10,7 +10,7 @@ export function* loadPackages() {
 
 export function* uninstallPackage({payload: {name: packageName}}) {
   const status = yield call(pacman.uninstallPackage, packageName)
-  yield put({type: 'RECEIVE_STATUS', status})
+  yield put({type: 'SET_STATUS', payload: {status}})
 }
 
 export function* watchLoadPackages() {

@@ -26,7 +26,7 @@ export default ({reducer, action, count = 1}) => {
       if (i === count) {
         const actions = reducerSpy.args.slice(1).map((arg) => arg[1])
 
-        const result = _.zipWith(actions, states, (action, state) => ({action, result: state}))
+        const result = _.zipWith(actions, states, (action_, state) => ({action: action_, result: state}))
         resolve(result)
       }
     }
