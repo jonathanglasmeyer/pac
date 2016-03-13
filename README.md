@@ -12,7 +12,7 @@ A GUI for the Arch Linux package manager `pacman` built with [Electron](http://e
 - "Vanilla" Webpack HMR Hot Reloading for Redux as demonstrated [here](https://github.com/reactjs/redux/commit/6d45dfda431b0136b9b3845ca79e81768b95cc1e).
 - [CSS Modules](https://github.com/css-modules/css-modules).
 - [redux-saga](https://github.com/yelouafi/redux-saga) for async side effects
-- [AVA](https://github.com/sindresorhus/ava) for testing them
+- mocha with power-assert (tried AVA but watch reload is too slow for now)
 - soon: [Enzyme](https://github.com/airbnb/enzyme) for testing react components
 - [recompose](https://github.com/acdlite/recompose) to exclusively use stateless functional components
 

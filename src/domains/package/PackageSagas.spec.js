@@ -1,8 +1,14 @@
-import test from 'ava';
 import {put, call} from 'redux-saga/effects';
 import {loadPackages, getMockPackages} from './PackageSagas';
 
-test('loadPackages', async (t) => {
-  const gen = loadPackages();
-  t.same(gen.next().value, call(getMockPackages))
+describe('PackageSagas', () => {
+  describe('loadPackages', () => {
+    it('works', () => {
+      const gen = loadPackages();
+      const packages = [];
+      assert.deepEqual(gen.next().value, call(getMockPackages));
+      assert.deepEqual(gen.next(packages).value, put({type: 'RECEIVE_PACKAGES', packages}));
+      assert.deepEqual(gen.next(), {done: true, value: undefined});
+    });
+  });
 });
